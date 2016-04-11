@@ -1,0 +1,9 @@
+admin/node_modules
+user/node_modules
+.env
+Dockerfile
+docker-compose.yml
+.DS_Store
+experpro.jpg
+graph.png
+target.png

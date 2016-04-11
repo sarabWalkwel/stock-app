@@ -1,0 +1,19 @@
+<div class="modal" id="login-modal"  style="display: block;">
+           <div class="vertical-alignment-helper"> 
+    	       <div class="modal-dialog vertical-align-center">
+				<div class="loginmodal-container">
+            <button type="button" class="close" ng-click="cancel();">x</button>
+					<h1>Login to Your Account</h1><br>
+				  <form ng-submit="login()">
+					<input type="text"  placeholder="Username" ng-model="loginDetails.name">
+					<input type="password"  placeholder="Password" ng-model="loginDetails.pass">
+					<input type="submit" name="login" class="login loginmodal-submit" value="Login">
+				  </form>
+					
+				  <div class="login-help">
+					<a  href="#" data-dismiss="modal" data-toggle="modal" data-target="#signup-modal">Signup</a> - <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#forgot-modal">Forgot Password</a>
+				  </div>
+				</div>
+			</div>
+            </div>
+		  </div>

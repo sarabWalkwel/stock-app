@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Stock Marketing</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
+
+    
+
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    
+    
+      
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body data-ng-app="stock" data-ng-controller="MainController">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><img src="img/logo.jpg" alt="" /></a>
+            </div>
+            
+            <!-- search form -->
+            <div id="search-form">
+                <div class="input-group">
+                    <input type="text" placeholder="Enter the company name or symbol" class="form-control">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default">
+                            <img src="img/search-box.png" alt="" />
+                        </button>
+                    </span>
+                </div>
+            </div>
+            
+            <!-- link buttons -->
+            <div class="link-button">
+                <p>&#40;All prices in <img src="img/header-rupees.jpg" alt="" />&#41;</p>
+                <a href  class="btn-brand" ng-click="loginModal();">Login</a>
+                <a href ng-click="signUpModal()" class="btn-brand btn-brand-ghost">Signup</a>
+            </div>
+        </div>
+        <!-- /.container -->
+    </nav>
+   
+<!-- banner content -->
+    <div id="banner-content">
+       <div class="container">
+         <div class="row">
+             <div class="col-md-12"><h1>Popular Stocks</h1></div>
+         </div>
+          <div class="row">
+            <div class="col-md-3">
+              <h3>Facebook Inc. Cl A</h3>
+              <div class="popular-content">
+                <img src="img/arrow-down.png" alt="" />
+                  <section>
+                      <h2><img src="img/rupees.png" />109.90</h2>
+                      <p>Change   -0.05 -0.05%<br/>Remark   Hold</p>
+                  </section>
+              </div>
+            </div> 
+            <div class="col-md-3">
+              <h3>Facebook Inc. Cl A</h3>
+              <div class="popular-content">
+                <img src="img/arrow-down.png" alt="" />
+                  <section>
+                      <h2><img src="img/rupees.png" />109.90</h2>
+                      <p>Change   -0.05 -0.05%<br/>Remark   Hold</p>
+                  </section>
+              </div>
+            </div> 
+            <div class="col-md-3">
+              <h3>Facebook Inc. Cl A</h3>
+              <div class="popular-content">
+                <img src="img/arrow-up.png" alt="" />
+                  <section>
+                      <h2><img src="img/rupees.png" />109.90</h2>
+                      <p>Change   -0.05 -0.05%<br/>Remark   Hold</p>
+                  </section>
+              </div>
+            </div> 
+            <div class="col-md-3">
+              <h3>Facebook Inc. Cl A</h3>
+              <div class="popular-content">
+                <img src="img/arrow-down.png" alt="" />
+                  <section>
+                      <h2><img src="img/rupees.png" />109.90</h2>
+                      <p>Change   -0.05 -0.05%<br/>Remark   Hold</p>
+                  </section>
+              </div>
+            </div>    
+          </div>
+         <div class="row">
+             <div class="col-md-12"><a href="#">More...</a></div>
+         </div>
+       </div>
+    </div>
+    
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Left section content -->
+            <div class="col-lg-8">
+
+
+                <div class="well">
+                    <!-- heading -->
+                    <div class="box-heading">
+                     <h4>STOCK COMPANY</h4>
+                         <!-- filters -->
+                        <div class="dropdown">
+                          <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Filters
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu" style="width: 215px; height: 164px;">                           
+                            <li><input type="checkbox" required="" data-error="" id="">Search By Popular Stock</li>
+                            <li><input type="checkbox" required="" data-error="" id="">Stock Price: Low to High</li>
+                            <li><input type="checkbox" required="" data-error="" id="">Stock Price: High to Low</li>
+                            <li><input type="checkbox" required="" data-error="" id="">Loser Companies</li>
+                            <li><input type="checkbox" required="" data-error="" id="">Gain Companies</li>
+                          </ul>
+                        </div>
+                    </div>
+                    <!-- company listing -->
+                    <div class="box-content" data-ng-repeat="mainList in filteredPredictionList">
+                      <div class="media">
+                        <div class="media-body row">
+                           <!-- company details -->
+                          <div class="media col-md-8">
+                              <a class="pull-left" href="#">
+                                  <img class="media-object" width="100" height="100" src="img/placehold.png" alt="">
+                              </a>
+                              <div class="media-body">
+                                  <h4 class="media-heading">{{mainList.company}}</h4>
+                                  <h6>Current Price - <img src="img/rupees-brand-color.png" alt="" /> <span>{{mainList.current}}</span></h6>
+                                  <p>{{mainList.companydesc}}</p>
+                              </div>
+                          </div>
+                             <!-- predication details -->
+                          <div class="media col-md-4">
+                             <div class="predic-user">                            
+                                  <a class="pull-left" href="#">
+                                      <img width="47" height="47" src="img/placehold.png" alt="">
+                                  </a>
+                                  <div>
+                                      <h4>Latest Prediction</h4>
+                                      <p>by <span>{{mainList.expert}}</span></p>
+                                      <span>{{mainList.date | date: 'dd/MM/yyyy @ hh:mm a'}}</span>
+                                 </div>
+                              </div>
+                             <div class="predic-result">
+                                <img src="img/arrow-down.png" height="30" alt="" class="pull-left" />
+                                 <div class="pull-left">                              
+                                   <h4><img src="img/rupees-gray.png" alt="" /> {{mainList.prediction}}</h4>
+                                   <h6>Change <span class="stock-down">{{mainList.current - mainList.prediction}}</span></h6>
+                                 </div>
+                                 <a href="" id="btnright" class="expert-predic-btn ghost-link-btn pull-right" ng-click="viewAllPredictions(mainList.companyId);">View Expert Predictions</a>
+                              </div>
+                          </div>
+                        </div>
+                         <!-- / row media-body -->
+                      </div>
+                    </div>
+                    
+                    <!--pagination -->
+                    <div class="row pagination-container">
+                        
+                        <uib-pagination 
+      ng-model="currentPage"
+      total-items="predictionList.length"
+      max-size="maxSize"  
+      boundary-links="true">
+    </uib-pagination>
+    
+                    </div>
+                </div>
+                <!-- Comment -->
+
+            </div>
+
+            <!-- Right section content -->
+            <div class="col-md-4">
+                
+                <!-- BOX - marketing graph -->
+                <div class="well">
+                    <div class="box-heading">
+                     <h4>MARKET GRAPH</h4>
+                        <!-- filters -->
+                     <div class="dropdown" style="border:0;">
+                          <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Tata Ratana Pvt Ltd.
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu">
+                            <li><a href="#">AXIS</a></li>
+                            <li><a href="#">SBI</a></li>
+                            <li><a href="#">TATA</a></li>
+                            <li><a href="#">LIC</a></li>
+                            <li><a href="#">Quickr</a></li>
+                            <li><a href="#">OLX</a></li>
+                            <li><a href="#">PNB</a></li>
+                          </ul>
+                        </div>
+                    </div>
+                    <div class="box-content">
+                        <img src="img/graph.jpg" alt="" />
+                    </div>
+                </div>
+                
+                
+                <!-- BOX - top expert -->
+                <div class="well">
+                    <div class="box-content">
+                        <ul class="nav nav-pills">
+                          <li class="active"><a data-toggle="pill" href="#gainer">TOP GAINERS</a></li>
+                          <li><a data-toggle="pill" href="#loser">TOP LOSERS</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div id="gainer" class="tab-pane fade in active">
+                            <table class="table">
+                            <thead>
+                              <tr>
+                                <th width="50%">Company</th>
+                                <th>Price</th>
+                                <th>% Gain</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>Axis</td>
+                                <td>1200.00</td>
+                                <td>50.01</td>
+                              </tr>
+                              <tr>
+                                <td>Axis</td>
+                                <td>1200.00</td>
+                                <td>50.01</td>
+                              </tr>
+                              <tr>
+                                <td>Axis</td>
+                                <td>1200.00</td>
+                                <td>50.01</td>
+                              </tr>
+                              <tr>
+                                <td>Axis</td>
+                                <td>1200.00</td>
+                                <td>50.01</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                              <a class="ghost-link-btn pull-right" style="margin:3px 16px 12px; padding:6px;" href="">View All</a>
+                          </div>
+                          <div id="loser" class="tab-pane fade">
+                            <table class="table">
+                            <thead>
+                              <tr>
+                                <th width="50%">Company</th>
+                                <th>Price</th>
+                                <th>% Loss</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>Axis</td>
+                                <td>1200.00</td>
+                                <td>50.01</td>
+                              </tr>
+                              <tr>
+                                <td>Axis</td>
+                                <td>1200.00</td>
+                                <td>50.01</td>
+                              </tr>
+                              <tr>
+                                <td>Axis</td>
+                                <td>1200.00</td>
+                                <td>50.01</td>
+                              </tr>
+                              <tr>
+                                <td>Axis</td>
+                                <td>1200.00</td>
+                                <td>50.01</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                            <a class="ghost-link-btn pull-right" style="margin:3px 16px 12px; padding:6px;" href="">View All</a>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <!-- BOX - top expert -->
+                <div class="well">
+                    <div class="box-heading">
+                     <h4>TOP EXPERTS</h4>
+                        <!-- filters -->
+                     <div class="dropdown" style="border:0;">
+                          <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Filters
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu">
+                            <li><a href="#">AXIS</a></li>
+                            <li><a href="#">SBI</a></li>
+                            <li><a href="#">TATA</a></li>
+                            <li><a href="#">LIC</a></li>
+                            <li><a href="#">Quickr</a></li>
+                            <li><a href="#">OLX</a></li>
+                            <li><a href="#">PNB</a></li>
+                          </ul>
+                        </div>
+                    </div>
+                    <div class="box-content" data-ng-repeat="expert in expertList">
+                        <div class="media expert-listing">                            
+                            <a class="ghost-link-btn ghost-abs profile-view" style="margin:10px 16px 16px; padding:6px 4px;" href ng-click="profileView(expert.id);">View Profile</a>
+                            <a class="pull-left" href="#">
+                                <img class="media-object dp img-circle" src="img/placehold.png" width="86">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading">{{expert.name}}</h4>
+                                <div class="rating-static">
+                                  <span></span><span></span><span></span><span></span><span></span>
+                                </div>                                
+                            <table class="table-1">
+                            <thead>
+                              <tr>
+                                <th>Total Predication</th>
+                                <th>Accuracy</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td valign="bottom"><img src="img/graph-predic.png" alt="" />&nbsp; {{expert.predicted}}</td>
+                                <td valign="bottom"><img src="img/average.png" alt="" />{{expert.accuracy}}%</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+
+        <!-- Footer -->
+     <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="text-center">Copyright &copy; 2015-16 Stock Market Pvt. Ltd.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+    <!-- /.container -->
+    
+    <!--- content slide from right to left -->
+    <div id="content-slide" style="display: none">
+      <div class="box-content">
+        <div class="media">
+          <div class="media-body row">
+               <!-- company details -->
+            <div class="media col-md-12 companyDetails">
+                <a href="#" class="pull-left">
+                    <img width="120" height="120" alt="" src="img/placehold.png" class="media-object">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">{{companyPredictions[0].company}}</h4>
+                    <div class="popular-content">
+                      <section>
+                          <h2><img src="img/rupees-brand-big.png">{{companyPredictions[0].current}}</h2>
+                          <p>Change  <span class="stock-down">50.00</span><br>Remark   Hold</p>
+                      </section>
+                    </div>
+                    <a href="" style="margin: 10px 16px 16px; padding: 8px 6px; top: 68px;" class="ghost-link-btn ghost-abs">View Profile</a>
+                </div>
+            </div>
+               <!-- predication details -->
+            
+          </div>
+             <!-- / row media-body -->
+        </div>
+      </div>
+        <div id="scrolling-content">
+          <div class="media">              
+              <h4 class="predic-heading">Latest Predications</h4>
+              <div class="box-content" ng-repeat="prediction in companyPredictions">                        
+                        <div class="media expert-predic">
+                            <div class="col-md-8">
+                                <a href="#" class="pull-left">
+                                <img width="86" src="img/placehold.png" class="media-object dp img-circle">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading">{{prediction.expert}}</h4>
+                                <div class="rating-static">
+                                  <span></span><span></span><span></span><span></span><span></span>
+                                </div>                                
+                            <table class="table-1">
+                            <thead>
+                              <tr>
+                                <th>Accuracy</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td valign="bottom"><img alt="" src="img/average.png"> {{prediction.expertrating}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                            </div>
+                            </div>
+                   <div class="col-md-4">
+                    <div class="popular-content">
+                          <section>
+                              <h2><img src="img/rupees-brand-big.png">{{prediction.prediction}}</h2>
+                              <p>Change  <span class="stock-down">{{prediction.current - prediction.prediction}}</span><br>Remark {{prediction.suggestion}}</p>
+                          </section>
+                      </div>
+              </div>
+                            
+                        </div>
+              
+                    </div>
+           </div>
+        </div>
+	<div id="CloseButton">
+        <p>Latest Predication By <span>{{companyPredictions[0].expert}}</span></p>
+        <a ng-click="hideAllPredictions();" class="ghost-link-btn" style="float: right; padding: 8px 4px; margin: 12px; font-size: 13px;" href>Close</a></div>
+    </div>
+    
+    
+    <!--- profile slide from right to left -->
+    <div id="profile-slide" style="display:none;">
+	   <div>
+           <div class="box-content">
+                         <div class="media">
+                           <div class="media-body row">
+                               <!-- company details -->
+                            <div class="media col-md-12 companyDetails">
+                                    <img width="120" height="120" alt="" src="img/placehold.png" class="media-object text-center">
+                                <div class="media-body">
+                                    <h4 class="media-heading">{{expertProfile.name}}</h4>
+                                    <div class="popular-content">
+                                      <div class="rating-static">
+                                  <span></span><span></span><span></span><span></span><span></span>
+                                </div>                                
+                            <table class="table-1">
+                            <thead>
+                              <tr>
+                                <th width="50%">Total Predication</th>
+                                <th width="50%">Accuracy</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td valign="bottom"><img src="img/graph-predic.png" alt="" />&nbsp; {{expertProfile.predicted}}</td>
+                                <td valign="bottom"><img src="img/average.png" alt="" /> {{expertProfile.accuracy}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                                        
+              <p class="text-center" style="margin-top:10px;">{{expertProfile.description}}</p>
+                                  </div>
+                                </div>
+                            </div>
+                               <!-- predication details -->
+                            
+                        </div>
+                             <!-- / row media-body -->
+                        </div>
+           </div>
+            <div id="CloseButton"> 
+                <!-- predictor rating option for user -->
+               <div class="rating-stars">
+                   <label>Predictor Rating</label>
+                  <input id="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1" data-show-clear="false">
+                </div>
+                <a ng-click="profileClose();" class="ghost-link-btn" style="float: right; padding: 8px 4px; margin: 12px; font-size: 13px;" href>Close</a>
+           </div>
+        </div>
+    </div>    
+    
+        
+    
+      <!--- forget password modal-->
+     <div class="modal fade" id="forgot-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+           <div class="vertical-alignment-helper"> 
+    	       <div class="modal-dialog vertical-align-center">
+				<div class="loginmodal-container">
+                 <button type="button" class="close" data-dismiss="modal">x</button>
+					<h1>Forgot Password</h1>
+                    <p class="text-center">Enter your e-mail address below to reset your password.</p>
+				  <form>
+					<input type="text" name="pass" placeholder="Email">
+					<input type="submit" name="login" class="login loginmodal-submit" value="Rest my password">
+				  </form>
+					
+				  <div class="login-help">
+					<a href="#" data-dismiss="modal" data-toggle="modal" data-target="#forgot-modal">Back to Login</a>
+				  </div>
+				</div>
+			</div>
+            </div>
+		  </div>
+    
+    <!-- jQuery -->
+    <script src="libs/jquery/dist/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="libs/js/jquery.slimscroll.min.js"></script>
+  
+    <!-- Bootstrap Core JavaScript -->
+    <script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- load angular and angular route via CDN -->
+    <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/angular-route/angular-route.js"></script>
+    <script src="libs/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="app/UserCtrl.js"></script>
+    <script src="app/service/login.js"></script>
+    <script src="app/app.js"></script>
+  
+    <!-- Custom JavaScript -->
+    <script src="libs/js/main.js"></script>
+    <script src="libs/js/jquery.barrating.js"></script>
+    <script type="text/javascript">
+       $("#input-1").rating();
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+	
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Expert's List</h1>
+			</div>
+		</div><!--/.row-->
+				
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-body listing-table">
+					    <a href="" class="add-btn-brand" data-toggle="modal" data-target="#add-expert-profile" title="">Add Expert Profile</a>
+					    <table datatable="ng" dt-options="showCase.dtOptions" dt-column-defs="showCase.dtColumnDefs" class="table table-bordered table-hover">
+						<thead>
+						    <tr>
+						        <th >Expert Name</th>
+						        <th >Expert Description</th>
+						        <th >Action</th>
+						    </tr>
+					    </thead>
+					    <tbody>
+					    	<tr ng-repeat="expert in experts" >
+					    		<td >{{expert.name}}</td>
+						        <td >{{expert.description}}</td>
+						        <td >
+						        	<a ng-click="findExpert(expert._id)">
+						        		<svg data-toggle="modal" data-target="#edit-expert-profile" class="glyph stroked pencil  dsd">
+						        			<use xlink:href="#stroked-pencil"/>
+						        		</svg>
+					        		</a>
+					        	<a ng-click="deleteExpert(expert._id)"><svg class="glyph stroked trash" ><use xlink:href="#stroked-trash"/></svg></a></td>
+					    	</tr>
+					    	
+					    </tbody>
+					</table>
+					</div>
+				</div>
+			</div>
+		</div><!--/.row-->	
+		
+		
+<!-- add company profile modal -->
+<div id="add-expert-profile" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Expert Profile</h4>
+      </div>
+      <div class="modal-body">
+       <form role="form">				
+			<div class="form-group">
+				<label>Expert Name</label>
+				<input placeholder="" class="form-control" ng-model="expertname">
+			</div>
+			<div class="form-group">
+				<label>Expert Description</label>
+				<textarea rows="2" class="form-control" ng-model="expertdescription"></textarea>
+			</div>
+		</form>
+      </div>
+      <div class="modal-footer">
+      <button class="btn btn-primary" type="submit" ng-click="addExpert()">Add Expert</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Edit company profile modal -->
+<div id="edit-expert-profile" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit Expert Profile</h4>
+      </div>
+      <div class="modal-body">
+       <form role="form">				
+			<div class="form-group">
+				<label>Expert Name</label>
+				<input placeholder="" Value="Neelesh Mishra" class="form-control" ng-model="expertDetail.name">
+			</div>
+			<div class="form-group">
+				<label>Company Description</label>
+				<textarea rows="5" class="form-control" ng-model="expertDetail.description"></textarea>
+			</div>
+		</form>
+      </div>
+      <div class="modal-footer">
+      <button class="btn btn-primary" ng-click="updateExpert(expertDetail._id)">Update Expert</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

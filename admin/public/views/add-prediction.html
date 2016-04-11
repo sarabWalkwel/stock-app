@@ -1,0 +1,204 @@
+	
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">Prediction's List</h1>
+			</div>
+		</div><!--/.row-->
+				
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-body listing-table">
+					    <a href="" class="add-btn-brand" data-toggle="modal" data-target="#add-prediction" title="">Add Prediction</a>
+					    <table datatable="ng" dt-options="showCase.dtOptions" dt-column-defs="showCase.dtColumnDefs" class="table table-bordered table-hover">
+						<thead>
+						    <tr>
+						        <th>Date </th>
+						        <th>Time </th>
+						        <th>Company </th>
+						        <th>Expert </th>
+						        <th>Current Price </th>
+						        <th>Targeted </th>
+						        <th>Prediction </th>
+						        <th>Suggestion </th>
+						        <th>Action</th>
+						    </tr>
+					    </thead>
+					    <tbody>
+					    	<tr ng-repeat="prediction in predictionList">
+					    		<td >{{prediction.date | date:"dd/M/yyyy"}}</td>
+					    		<td >{{prediction.date | date:"hh:mm a"}}</td>
+						        <td >{{prediction.company}}</td>
+						        <td >{{prediction.expert}}</td>
+						        <td >{{prediction.current}}</td>
+						        <td >{{prediction.target}}</td>
+						        <td >{{prediction.prediction}}</td>
+						        <td >{{prediction.suggestion}}</td>
+						        <td >
+						        	<a ng-click="findPrediction(prediction._id)" href="#" data-toggle="modal" data-target="#edit-prediction">
+						        		<i class="fa fa-pencil"></i>
+					        		</a>
+					        	<a ng-click="deletePrediction(prediction._id)" href="#">
+					        		<i class="fa fa-trash"></i>
+					        	</a></td>
+					    	</tr>
+					    	
+					    </tbody>
+					</table>
+					</div>
+				</div>
+			</div>
+		</div><!--/.row-->	
+		
+		
+<!-- add company profile modal -->
+<div id="add-prediction" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add Prediction</h4>
+      </div>
+      <div class="modal-body">
+       <form role="form" class="form-horizontal">				
+			<div class="form-group">
+				<div class="col-md-12">
+					<label>Company</label>
+					<select class="form-control" ng-model="addPrediction.company" ng-options="item._id as item.name for item in companies" ng-change="getShare(addPrediction.company)">
+						<option value="">Select a Company</option>
+					</select>
+
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-12">
+					<label for="">Current Price</label>
+					<input type="text" class="form-control" ng-model="shares[0].shareprice" placeholder="Current Price">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-12">
+					<label>Expert</label>
+					<select class="form-control" ng-model="addPrediction.expert" ng-options="item._id as item.name for item in experts">
+						<option value=""> Select an Expert</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<label >Date</label>
+					<input type="date" class="form-control" ng-model="addPrediction.date">
+				</div>
+				<div class="col-sm-6">
+					<label >Time</label>
+					<input type="time" class="form-control" ng-model="addPrediction.time">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-4">
+					<label >Targeted Price</label>
+					<input type="text" class="form-control" ng-model="addPrediction.target">
+				</div>
+				<div class="col-md-4">
+					<label >Prediction Price</label>
+					<input type="text" class="form-control" ng-model="addPrediction.prediction">
+				</div>
+				<div class="col-md-4">
+					<label >Suggestion Price</label>
+					<select class="form-control" ng-model="addPrediction.suggestion">
+						<option >Sell</option>
+						<option >Buy</option>
+						<option >Hold</option>
+					</select>
+				</div>
+			</div>	
+
+		</form>
+      </div>
+      <div class="modal-footer">
+      <button class="btn btn-primary" type="submit" ng-click="addToPrediction()">Add</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Edit company profile modal -->
+<div id="edit-prediction" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit Prediction</h4>
+      </div>
+      <div class="modal-body">
+       <form role="form" class="form-horizontal">				
+			<div class="form-group">
+				<div class="col-md-12">
+					<label>Company</label>
+					<select class="form-control" ng-model="editPredictionDetails.companyId" ng-options="item._id as item.name for item in companies" ng-change="getShare(editPredictionDetails.companyId)">
+						<option value="">Select a Company</option>
+					</select>
+
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-12">
+					<label for="">Current Price</label>
+					<input type="text" class="form-control" ng-model="shares[0].shareprice" placeholder="Current Price" disabled>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-12">
+					<label>Expert</label>
+					<select class="form-control" ng-model="editPredictionDetails.expertId" ng-options="item._id as item.name for item in experts">
+						<option value=""> Select an Expert</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-6">
+					<label >Date</label>
+					<input type="date" class="form-control" ng-model="editPredictionDetails.date">
+				</div>
+				<div class="col-sm-6">
+					<label >Time</label>
+					<input type="time" class="form-control" ng-model="editPredictionDetails.time">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-4">
+					<label >Targeted Price</label>
+					<input type="text" class="form-control" ng-model="editPredictionDetails.target">
+				</div>
+				<div class="col-md-4">
+					<label >Prediction Price</label>
+					<input type="text" class="form-control" ng-model="editPredictionDetails.prediction">
+				</div>
+				<div class="col-md-4">
+					<label >Suggestion Price</label>
+					<select class="form-control" ng-model="editPredictionDetails.suggestion">
+						<option >Sell</option>
+						<option >Buy</option>
+						<option >Hold</option>
+					</select>
+				</div>
+			</div>	
+
+		</form>
+      </div>
+      <div class="modal-footer">
+      <button class="btn btn-primary" type="submit" ng-click="editPrediction()">Submit</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

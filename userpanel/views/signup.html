@@ -1,0 +1,23 @@
+<!--- signup modal-->
+     <div class="modal" id="signup-modal" style="display: block;">
+           <div class="vertical-alignment-helper"> 
+    	       <div class="modal-dialog vertical-align-center">
+				<div class="loginmodal-container">
+            <button type="button" class="close" ng-click="cancel()">x</button>
+					<h1>Create Your Stock Marketing Account</h1><br>
+				  <form ng-submit="signup()" novalidate >
+					<input type="text" name="user" placeholder="Name" ng-model="register.name">
+					<input type="text" name="pass" placeholder="Email" ng-model="register.email">
+					<input type="password" name="pass" placeholder="Password" ng-model="register.password">
+					<input type="password" name="pass" placeholder="Confirm Password" ng-model="register.cpassword">
+					<input type="submit" name="login" class="login loginmodal-submit" value="Signup" ng-click="signup()">
+					<div class="alert alert-danger" ng-show="checkPassword">Password Doesn't match</div>
+				  </form>
+					
+				  <div class="login-help">
+					<a  href="#" data-dismiss="modal" data-toggle="modal" data-target="#login-modal">Already Have a Account! Login</a>
+				  </div>
+				</div>
+			</div>
+            </div>
+		  </div>

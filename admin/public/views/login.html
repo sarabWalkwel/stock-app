@@ -1,0 +1,21 @@
+<div class="flex-box">
+			<div class="login-panel panel panel-default">
+				<div class="brand-logo"><img src="images/logo.png" alt="" /></div>
+				<div class="panel-body">
+					<form role="form" name="loginForm">
+						<fieldset>
+							<div class="form-group">
+								<input class="form-control" placeholder="E-mail" name="email" type="email" autofocus="" ng-model="email">
+							</div>
+							<div class="form-group">
+								<input class="form-control" placeholder="Password" name="password" type="password" ng-model="loginpassword" >
+							</div>
+
+						<div class="alert alert-danger " ng-show="inValidPassword">Password or User is invalid</div>
+							<a href="#" class="btn btn-primary btn-brand" ng-click="login()">Login</a>
+						</fieldset>
+						<a href="/passwordreset">Forgot Password</a>
+					</form>
+				</div>
+			</div>
+	</div><!-- /.flex-box -->	

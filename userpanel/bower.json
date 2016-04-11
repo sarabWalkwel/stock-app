@@ -1,0 +1,12 @@
+{
+  "name": "StockMarketing",
+  "version": "1.0.0",
+  "dependencies": {
+    "angular": "*",
+    "angular-route": "*",
+    "bootstrap": "*",
+    "font-awesome": "*",
+    "jquery": "*",
+    "angular-bootstrap": "^1.3.1"
+  }
+}

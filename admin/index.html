@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stock Market App - Dashboard</title>
+
+<!-- CSS -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-table.css" rel="stylesheet">
+	<link href="css/datepicker3.css" rel="stylesheet">
+	<link href="css/styles.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/jquery.dataTables.css">
+	<link rel="stylesheet" href="libs/angular-datatables/dist/plugins/bootstrap/datatables.bootstrap.min.css">
+
+
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+
+<body ng-app="stockApp">
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"><span>Stock</span>Market</a>
+				<ul class="user-menu">
+					<li class="dropdown pull-right">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> User <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Profile</a></li>
+							<li><a href="#"><svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg> Settings</a></li>
+							<li><a href="#"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Logout</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+							
+		</div><!-- /.container-fluid -->
+	</nav>
+		
+	<div id="sidebar-collapse" class="col-sm-3 col-md-3 col-lg-2 sidebar">
+		<ul class="nav menu">
+			<li class="active"><a href="/"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
+			<li><a href="/companies"><svg class="glyph stroked app-window"><use xlink:href="#stroked-app-window"></use></svg> Companies</a></li>
+			<li><a href="/experts"><svg class="glyph stroked male user "><use xlink:href="#stroked-male-user"/></svg> Expert's</a></li>
+			<li><a href="/sharePrice"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg>Company's Share Price</a></li>
+			<li><a href="/prediction"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Expert's Predictions</a></li>
+			<li><a href="reports.html"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg> Reports</a></li>
+		</ul>
+
+	</div><!--/.sidebar-->
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
+		
+		<div ng-view></div>
+		
+	</div>	/.main
+
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/jquery.dataTables.js"></script>
+	<!-- JS -->
+	<script src="libs/angular/angular.min.js"></script>
+	<script src="libs/angular-route/angular-route.min.js"></script>
+	<script src="libs/angular-datatables/dist/angular-datatables.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="libs/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.min.js"></script>
+
+	<!-- ANGULAR CUSTOM -->
+    <!--
+	
+    <script src="js/controllers/MainCtrl.js"></script>
+    <script src="js/controllers/CompanyCtrl.js"></script>
+    <script src="js/services/CompanyService.js"></script>-->
+    <script src="app/controllers/DashboardCtrl.js"></script>
+    <script src="app/controllers/CompanyCtrl.js"></script>
+    <script src="app/controllers/ExpertCtrl.js"></script>
+    <script src="app/appRoutes.js"></script>
+    <script src="app/app.js"></script>
+
+	<!--Icons-->
+
+	<script src="js/glyphs.js"></script>
+	<!-- <script src="js/bootstrap-table.js"></script> --> 
+	<script src="js/chart.min.js"></script>
+	<script src="js/chart-data.js"></script>
+	<!--<script src="js/easypiechart.js"></script>
+	<script src="js/easypiechart-data.js"></script>-->
+	<script>
+
+		$(document).ready(function($) {
+			$('.nav.menu > li > a').click(function(event) {
+				/* Act on the event */
+				$(this).parent('li').addClass('active');
+				$(this).parent('li').siblings('li').removeClass('active');
+				/*var href = $(this).attr("href");
+window.alert(href.substr(href.lastIndexOf('/') + 1));*/
+			});
+			/*var mylocation = window.location;
+			lastlocation = mylocation.substr(mylocation.lastIndexOf('/') + 1);
+			alert(lastlocation);*/
+			
+		});
+		/*!function ($) {
+		    $(document).on("click","ul.nav li.parent > a > span.icon", function(){          
+		        $(this).find('em:first').toggleClass("glyphicon-minus");      
+		    }); 
+		    $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+		}(window.jQuery);
+
+		$(window).on('resize', function () {
+		  if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+		})
+		$(window).on('resize', function () {
+		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+		})*/
+	</script>	
+</body>
+
+</html>

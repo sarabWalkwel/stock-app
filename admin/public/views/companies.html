@@ -1,0 +1,145 @@
+
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header">Company's List</h1>
+		</div>
+	</div><!--/.row-->
+			
+	
+	<div class="row" >
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-body listing-table" >					    
+				    <a href="" class="btn btn-info btn-lg" data-toggle="modal" data-target="#add-company-profile" title="">Add Company Profile</a>
+				    <a href="" class="btn btn-lg btn-warning" data-toggle="modal" data-target="#add-shareprice" title="">Add Company SharePrice</a>
+					<table datatable="ng" dt-options="showCase.dtOptions" dt-column-defs="showCase.dtColumnDefs" class="table table-bordered table-hover">
+						<thead>
+						    <tr>
+						        <th>Company Name</th>
+						        <th>Company Description</th>
+						        <th>Action</th>
+						    </tr>
+					    </thead>
+					    <tbody>
+					    	<tr ng-repeat="company in companies" >
+					    		<td ><a href="/sharePrice/{{company._id}}">{{company.name}}</a></td>
+						        <td >{{company.description}}</td>
+						        <td>
+						        	<a ng-click="findCompany(company._id)" href="#" >
+						        		<i class="fa fa-pencil" data-toggle="modal" data-target="#edit-company-profile"></i>
+					        		</a>
+					        	<a ng-click="deleteCompany(company._id)" href="#"><i class="fa fa-trash"></i></a></td>
+					    	</tr>
+					    	
+					    </tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div><!--/.row-->	
+
+	<!-- add company profile modal -->
+	<div id="add-company-profile" class="modal fade" role="dialog" >
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Company Profile</h4>
+	      </div>
+	      <div class="modal-body">
+	       <form role="form">				
+				<div class="form-group">
+					<label>Company Name</label>
+					<input placeholder="" class="form-control" ng-model="name">
+				</div>
+				<div class="form-group">
+					<label>Company Description</label>
+					<textarea rows="2" class="form-control" ng-model="description"></textarea>
+				</div>
+				<div class="form-group">
+					<label for="">Company Logo</label>
+					<input type="file" ngf-select ng-model="logo" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" class="form-control" >
+               Image thumbnail: <img style="width:250px;" ngf-thumbnail="logo || '/thumb.jpg'"/>
+            <i ng-show="upload_form.file.$error.required">*required</i><br>
+            <i ng-show="upload_form.file.$error.maxSize">File too large 
+            {{file.size / 1000000|number:1}}MB: max 20M</i>	
+				</div>
+			</form>
+	      </div>
+	      <div class="modal-footer">
+	      	<button class="btn btn-primary" type="submit" data-ng-click="addCompany()">Add Company</button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
+	<!-- Edit company profile modal -->
+	<div id="edit-company-profile" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Edit Company Profile</h4>
+	      </div>
+	      <div class="modal-body">
+	       <form role="form">				
+				<div class="form-group">
+					<label>Company Name</label>
+					<input placeholder="" Value="HDFC" class="form-control" ng-model="companyData.name">
+				</div>
+				<div class="form-group">
+					<label>Company Description</label>
+					<textarea rows="5" class="form-control" ng-model="companyData.description"></textarea>
+				</div>
+			</form>
+	      </div>
+	      <div class="modal-footer">
+	      <button class="btn btn-primary" ng-click="updateCompany(companyData._id)">Update Company</button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
+	<!-- add sharePrice modal -->
+	<div id="add-shareprice" class="modal fade" role="dialog" >
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Add Company Share Price</h4>
+	      </div>
+	      <div class="modal-body">
+	       <form role="form">				
+				<div class="form-group">
+					<label>Company Name</label>
+					<select class="form-control" ng-model="companyData._id" ng-options="item._id as item.name for item in companies" ng-change="findCompany(companyData._id)">
+					<option value="">Select a Company</option>
+				</select>
+				</div>
+				<div class="form-group">
+					<label>Company Share Price</label>
+					<input placeholder="" class="form-control" ng-model="company.shareprice">
+				</div>
+			</form>
+	      </div>
+	      <div class="modal-footer">
+	      	<button class="btn btn-primary" type="submit" data-ng-click="addShareRate(companyData._id)">Add Company</button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
+
+	
